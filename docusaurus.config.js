@@ -8,15 +8,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Allxon Octo Developers',
   tagline: 'Allxon are cool',
-  url: 'https://allxon.github.io',
-  baseUrl: '/developer-zone/',
+  url: 'https://lynx-huang.github.io/',
+  baseUrl: '/allxonTest/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'allxon', // Usually your GitHub org/user name.
+  organizationName: 'lynx-huang', // Usually your GitHub org/user name.
   projectName: 'developer-zone', // Usually your repo name.
   trailingSlash: false,
 
@@ -66,7 +66,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/allxon/developer-zone/edit/master/',
+            'https://github.com/Lynx-Huang/allxonTest',
             
         },
         blog: { 
@@ -74,7 +74,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/allxon/developer-zone',
+            'https://github.com/Lynx-Huang/allxonTest',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
