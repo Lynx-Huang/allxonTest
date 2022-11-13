@@ -1,8 +1,10 @@
 ![metric-sequence](../_img/metric-sequence.png)
 
-Metrics Card help you to present chart style information, Ex: device temperature. Sequence flow just same with State Card.
+The **Metrics** feature helps you to present information in a **Charts** card on the Portal, such as device temperature. The sequence flow is just the same as that of the **States** card.
 
-Take a look at the example:
+Here is an example of creating the **Charts** card:
+
+First, send the following `v2/notifyPluginUpdate` JSON.
 
 ```json {17-26}
 {
@@ -38,11 +40,13 @@ Take a look at the example:
 }
 ```
 
-After Sending `v2/notifyPluginUpdate` JSON above, Allxon Portal will show Metrics Card below. Diagram is empty, because it's still in initialize state.
+Once done, Allxon Portal shows the **Charts** card below. The diagram is empty because it's still in the initialization state.
+
 
 ![metric-init](../_img/metric-init.png)
 
-Let's try send `v2/notifyPluginMetric` to upload data:
+Now you can send `v2/notifyPluginMetric` to upload data:
+
 
 ```json
 {
@@ -61,17 +65,19 @@ Let's try send `v2/notifyPluginMetric` to upload data:
    }
 }
 ```
+While the `"value"` is `“298.15"` in the code line above, why does the Charts card show 25<sup>o</sup>C ? This is because Allxon Portal uses **Kelvin** as the unit of temperature if you select `"temperature"` as the `"displayType"`.
  
 You may curious why `"value"` is `"298.5"`, because if your `"displayType"` is set to `"temperature"`, Allxon Portal would assume your `"value"` unit is Kelvin.
 
 :::tip
-This [link](https://www.unitconverters.net/) help you to convert between Celcius and Kelvin.
+Use this [unit converter](https://www.unitconverters.net/) to make sure you convert correctly between *Fahrenheit*, *Celsius* and *Kelvin*.
+
 :::
 
-Metric Card will display like this:
+Below is an example of the **Charts** card::
 
 ![metric-first-shot](../_img/metrics-first-shot.png)
 
-Keep sending second shot of `v2/notifyPluginMetric`:
+You can continue to send the `v2/notifyPluginMetric`. The chart is updated accordingly
 
 ![metric-second-shot](../_img/metrics-second-shot.png)

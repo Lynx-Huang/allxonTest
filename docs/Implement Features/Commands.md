@@ -1,8 +1,9 @@
 ![command-sequence](../_img/command-sequence.png)
 
-Command Cards provide a custom GUI to send command through Allxon protal. Send `v2/notifyPluginUpdate` to initialize. When you execute the Command from Allxon Portal, Plugin will receive `v2/notifyPluginCommand`, then send `v2/notifyPluginCommandAck` back to confirm the receive, finally, send  `v2/notifyPluginCommandAck` to bring execution result back to Allxon Portal.
+The **Commands** feature allows developers to define the commands supported by the plugin. The **Commands** card provides a custom GUI to send commands through Allxon Portal. You need to send `v2/notifyPluginUpdate` to initialize the card. When you execute commands from Allxon Portal, the plugin receives `v2/notifyPluginCommand`, sends `v2/notifyPluginCommandAck` back to confirm receipt, and finally sends `v2/notifyPluginCommandAck` again to bring the execution result back to Allxon Portal.
 
-Here is a example:
+
+Here is a example of using the **Commands** card:
 
 ```json {17-35} 
 {
@@ -48,7 +49,8 @@ Here is a example:
 
 ![command-card](../_img/command-card.png)
 
-After click "Execute" button, Allxon Portal will send `v2/notifyPluginCommand` to Plugin:
+Fill in the parameter and click the Execute button. Then the command is brought to the plugin via `v2/notifyPluginCommand`:
+
 
 ```json {3}
 {
@@ -76,10 +78,14 @@ After click "Execute" button, Allxon Portal will send `v2/notifyPluginCommand` t
 ```
 
 :::note
-You may curious what's texts follow `?` at highlight line. Octo SDK will verify this JSON is safe through these texts When you call Octo SDK `JsonValidator::Verify()`. 
+You might be curious about the text following the “*?*” mark in the highlighted line. Such text is used for safety verification. When you call `JsonValidator::Verify()`, Allxon Octo SDK verifies whether this JSON is safe through the text.
 :::
 
-Once we received `v2/notifyPluginCommand`, send back `v2/notifyPluginCommandAck` with `"commandState": "ACCEPTED"` to comfirm received with Allxon Portal.
+Once the plugin receives `v2/notifyPluginCommand`, it sends back `v2/notifyPluginCommandAck` with `"commandState": "ACCEPTED"` to Allxon Portal to confirm receipt.
+
+:::info
+The plugin responds with `"commandState": "ACCEPTED"` or `"commandState": "REJECTED"` to inform the Portal whether the plugin accepts this command or not.
+
 
 ```json {10}
 {
@@ -104,7 +110,7 @@ Once we received `v2/notifyPluginCommand`, send back `v2/notifyPluginCommandAck`
 }
 ```
 
-After finished your command task, send `v2/notifyPluginCommandAck` with `"commandState": "ACKED"` and contain execution result back to Allxon Portal.
+After completing your command task, send back to Allxon Portal v`v2/notifyPluginCommandAck` with `"commandState": "ACKED"`, which contains the execution result.
 
 ```json {10}
 {
@@ -129,11 +135,10 @@ After finished your command task, send `v2/notifyPluginCommandAck` with `"comman
 }
 ```
 
-:::note
-There're other `"commandState"` can use: `"REJECTED"`, `"ERRORED"`
+:::info
+The plugin responds with `"commandState": "ACKED"` or `"commandState": "ERRORED"`to inform the Portal of the execution result.
 :::
 
-If everything going well, command execute dialog on Allxon Portal will show up like this:
+If all goes well, the **Command Response Details** dialog is displayed on Allxon Portal, as shown below:
 
 ![command-result](../_img/command-result.png)
-

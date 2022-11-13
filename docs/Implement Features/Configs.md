@@ -1,8 +1,10 @@
 ![config-sequence](../_img/config-sequence.png)
 
-Configs Card sequence flow similar with Alert Card. Send `v2/notifyPluginUpdate` to initialize Alert Card, if you have Config setting on Allxon Portal, you will get `v2/notifyPluginConfigUpdate` after sending `v2/notifPluginUpdate`.
+The **Configs** feature sequence flow is similar to that of the **Alerts** feature. You need to send `v2/notifyPluginUpdate` to initialize the **Configs** card on Allxon Portal. Then you can proceed to complete the settings. Once done, the plugin receives `v2/notifyPluginConfigUpdate` for the settings.
 
-Let's take a look at the example:
+Here is an example of creating the **Configs** card:
+
+First, send `v2/notifyPluginUpdate`.
 
 ```json {17-31}
 {
@@ -42,16 +44,21 @@ Let's take a look at the example:
 }
 ```
 
-After sending `v2/notifyPluginUpdate`, Configs Card will look like the image below.
+Then you can see the **Configs** card, as shown below.
 
 ![config-init](../_img/config-init.png)
 
-Let's setting Config Card on Allxon Portal to fill parameters. Click "Edit" -> Type "my display" in config1-> "Save".
+Now let’s try updating the settings of the **Configs** card. Use the following procedure to fill in the parameters. 
+
+1. Click **Edit**.
+1. Enter *"my display"* as the *config1 display name*.
+1. Click **Save**.
+1. A confirmation dialog pops up. Click **Save** to confirm the change.
 
 ![config-set-param](../_img/config-set-param.png)
 ![config-set-finished](../_img/config-set-finished.png)
 
-After setting, Plugin should received new `v2/notifyPluginConfigUpdate` below to notify Plugin that config setting updated. 
+Once done, the plugin gets notified of the configs setting update by receiving the following new `v2/notifyPluginConfigUpdate`.
 
 ```json
 {

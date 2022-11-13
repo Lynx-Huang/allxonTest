@@ -1,8 +1,13 @@
 ![alert-sequence](../_img/alert-sequence.png)
 
-Alert can bring your alert message up to Allxon Portal, then Allxon Portal can tranfer message to your email, webhook, LINE ..., depend on your setting on Allxon Portal. Just like other Cards, send `v2/notifyPluginUpdate` to initialize Alert Card. If you have Alert setting on Allxon Portal, you will get `v2/notifyPluginAlarmUpdate` after sending `v2/notifPluginUpdate`. After that, you can send `v2/notifyPluginAlert` whenever you wanna trigger Alert.
+The **Alerts** feature enables you to your configure alert thresholds for the plugin to trigger alert messages to Allxon Portal. Then the Portal can send the alert message to you via email, Webhook, LINE, etc., depending on the notification channel setting on the Portal. 
 
-Let's take a look at the example:
+Similar to creating other cards, you need to send `v2/notifyPluginUpdate` to initialize the Alert Settings card. Once the initialization is completed, the plugin receives `v2/notifyPluginAlarmUpdate`. With such configuration, whenever the alert threshold is reached, the plugin triggers v2/notifyPluginAlert to the Portal.
+
+Let's look at an example of creating Alerts:
+
+First, send `v2/notifyPluginUpdate` to initialize the **Alert Settings** card. 
+
 
 ```json {17-25}
 {
@@ -36,11 +41,12 @@ Let's take a look at the example:
 }
 ```
 
-After sending `v2/notifyPluginUpdate`, Alert Card will look like the image below.
+Upon completion, you can see the **Alert Settings** card, as shown below.
 
 ![alert-card](../_img/alert-card.png)
 
-You may receive `v2/notifyPluginAlarmUpate` depend on your setting on Allxon Portal like the image below. 
+At this time, the Alert is not yet set up. The Portal sends the following `v2/notifyPluginAlarmUpate` to the plugin for the initialization.
+
 
 ```json
 {
@@ -53,7 +59,13 @@ You may receive `v2/notifyPluginAlarmUpate` depend on your setting on Allxon Por
 }
 ```
 
-Let's setting Alert Card on Allxon Portal to connect a webhook. Click "Edit" -> "webhook icon" -> choose a webhook preset -> "Next" -> "Save".
+Now you can set up the **Alert Settings** card on Allxon Portal. In this example, let’s try setting up an alert and connecting it to Webhook, so the alert message is sent via Webhook. 
+
+Follow the steps below:
+
+1. Click **Edit**, then the **Webhook** icon
+1. Choose a Webhook preset.
+1. Click **Next**, then **Save**.
 
 ![alert-edit](../_img/alert-edit.png)
 
@@ -61,7 +73,8 @@ Let's setting Alert Card on Allxon Portal to connect a webhook. Click "Edit" -> 
 
 ![alert-finished](../_img/alert-finished.png)
 
-After setting, Plugin should received new `v2/notifyPluginAlarmUpdate` below to notify Plugin that Alarm setting updated. 
+Once done, the plugin receives a new `v2/notifyPluginAlarmUpdate` (see below) to notify the plugin that the **Alerts Settings** has been updated.
+
 
 ```json {12-17}
 {
@@ -87,7 +100,9 @@ After setting, Plugin should received new `v2/notifyPluginAlarmUpdate` below to 
 }
 ```
 
-This can tell Plugin which alert should be enabled. Finally, try to send a `v2/notifyPluginAlert` below to test Alert function.
+Accordingly, the plugin enables the designated alert. 
+
+To test the Alert, send a `v2/notifyPluginAlert`, as shown below.
 
 ```json 
 {
@@ -109,7 +124,6 @@ This can tell Plugin which alert should be enabled. Finally, try to send a `v2/n
 }
 ```
 
-And you should received message on your connected webhook service. At the same time, Allxon Portal add a new record on Alert page.
+You should receive a message on your connected Webhook service. At the same time, Allxon Portal adds a new record to the **Alert** page of the device; all alert records are aggregated on this page.
 
 ![alert-trigger](../_img/alert-trigger.png)
-

@@ -1,8 +1,11 @@
 ![event-sequence](../_img/event-sequence.png)
 
-Event Card sequence flow as same as State Card. Sending `v2/notifyPluginEvent` to upload event after initialize with `v2/notifyPluginUpdate`.
+The **Events** card sequence flow is the same as that of the **States** card. After initializing the card with v2/notifyPluginUpdate, you can send `v2/notifyPluginEvent` to upload events.
 
-Take a look at the example:
+Here is an example of creating the **Events** card:
+
+First, send the following `v2/notifyPluginUpdate` JSON.
+
 
 ```json {17-24}
 {
@@ -34,12 +37,12 @@ Take a look at the example:
   }
 }
 ```
-
-After Sending `v2/notifyPluginUpdate` JSON above, Allxon Portal will show Events Card below.
+Once done, Allxon Portal shows the **Events** card below.
 
 ![event-init](../_img/event-init.png)
 
-Let's try send `v2/notifyPluginEvent` to upload data:
+Now you can send `v2/notifyPluginEvent` to upload an event record:
+
 
 ```json
 {
@@ -59,6 +62,6 @@ Let's try send `v2/notifyPluginEvent` to upload data:
 }
 ```
 
-Event Card will display like this:
+The **Events** card then displays like this:
 
 ![event-init](../_img/event-first-shot.png)

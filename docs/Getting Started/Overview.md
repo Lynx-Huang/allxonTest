@@ -11,8 +11,7 @@ sidebar_position: 1
 
 **Allxon Octo SDK** is implemented in C++ and available for 3^rd^ party developers to build device plugins to facilitate device management.
 
-:::Info
-Allxon Octo SDK supported platforms
+:::info Allxon Octo SDK supported platforms
 - Windows 10
 - Linux x86-64
 - Linux AArch64

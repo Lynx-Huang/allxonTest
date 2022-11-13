@@ -1,17 +1,19 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-For simple, we don't make a Plugin from scratch. Let's modify and build a Plugin from [Hello Plugin](https://github.com/allxon/plugIN-hello).
+Plugin creation is made easy with [Hello Plugin](https://github.com/allxon/plugIN-hello) — you can modify and create a plugin from this plugin package without having to develop a new one from scratch.
+
+
 
 ```
 git clone --recurse-submodules https://github.com/allxon/plugIN-hello.git
 ```
 
-## Apply a Plugin Credential
+## Apply for a Plugin Credential
 
-First, [Contact us](https://www.allxon.com/) to apply a `plugin_credential.json` file. With the key, Allxon portal can recognize your Plugin, and make sure your data is signed and safed. 
+To get started, [contact us](https://www.allxon.com/contact-allxon-octo) to apply for a `plugin_credential.json` file. Your data is signed and safe with such plugin identity, and Allxon Portal can recognize your plugin for data transmission
 
-Here is a example of `plugin_credential.json`:
+Here is an example of `plugin_credential.json`:
 
 ```json
 {
@@ -22,15 +24,19 @@ Here is a example of `plugin_credential.json`:
 }
 ```
 
-`app_guid` repesent your Plugin's ID, `access_key` is your key to sign your data.
+The `app_guid` repesent your Plugin's ID. The  `access_key` is your key to sign your data.
 
 :::caution
-Please keep your `access_key` safety, don't reveal on public.
+Please keep your `access_key` safe,  Don't reveal it to anyone.
 :::
 
-## How to get Plugin online
+## Get the Plugin Online
 
-Let's take a look at source code, first connect to Allxon Agent Websocket server `"wss://127.0.0.1:55688"`.
+First, you need to get your plugin online by connecting to Allxon Agent WebSocket server. 
+
+Below is the source code. 
+
+`"wss://127.0.0.1:55688"`.
 
 ```cpp {19} title="src/main.cpp"
 // ...
@@ -58,12 +64,14 @@ int main(int argc, char **argv)
 ```
 
 :::info
-Octo SDK only provide JSON encrypt and decrypt functionality. You can use whatever websocket library you like.
+
+Allxon Octo SDK only provides JSON encryption and decryption functionalities. Since it is not limited to specific WebSocket libraries, use whichever Websocket library that suits your needs.
 :::
 
-Next, Send a `v2/notifyPluginUpdate` Octo JSON-RPC API to initailize every Cards on Allxon Portal.
+Next, Send a `v2/notifyPluginUpdate` initialize all the cards on Allxon Portal.
 
-Check line 5, we load a `v2/notifyPluginUpdate` API payload from `plugin_update_template.json`, which locate at `resource_dir_linux/plugin_update_template.json`. Next sign the JSON (line 18) and send to Allxon Agent (line 23).
+
+Check line 5. Load a `v2/notifyPluginUpdate` API payload from `plugin_update_template.json`, which is located at `resource_dir_linux/plugin_update_template.json`. Then sign the JSON (line 18) and send it to Allxon Agent (line 23).
 
 
 ```cpp {5,18,23} title="src/websocket_client.cpp" showLineNumbers
@@ -98,7 +106,7 @@ void WebSocketClient::SendNotifyPluginUpdate()
 
 ## Build the Plugin
 
-Put your Plugin Credential under your Plugin working directory, and make user filename is `plugin_credential.json`.
+Put your **Plugin Credential** under your plugin working directory, and name the file `plugin_credential.json`.
 
 <Tabs>
 <TabItem value="bash" label="Linux">
@@ -137,7 +145,7 @@ build\<Debug|Release>\plugin-hello.exe resource_dir_windows
 <Tabs>
 <TabItem value="bash" label="Linux">
 
-You can run plugin-hello directly under the `build/folder`, and pass resource_dir_linux through argument
+You can run **plugin-hello** directly under the `build/folder`, and pass `resource_dir_linux` through argument
 
 ```bash
 build/plugin-hello resource_dir_linux
@@ -146,7 +154,7 @@ build/plugin-hello resource_dir_linux
 </TabItem>
 <TabItem value="cmd" label="Windows">
 
-You can run plugin-hello directly under the `build\folder`, and pass resource_dir_windows through argument
+You can run **plugin-hello** directly under the `build\folder`, and pass `resource_dir_windows` through argument
 
 ```batch
 build\<Debug|Release>\plugin-hello.exe resource_dir_windows
@@ -154,6 +162,6 @@ build\<Debug|Release>\plugin-hello.exe resource_dir_windows
 </TabItem>
 </Tabs>
 
-Then, you should find your Plugin page on Allxon portal. You can see there are Commands, States, Properties, Alerts Cards.
+Then, you can find your Plugin page on Allxon Portal, displaying cards of **Commands**, **States**, **Properties**, and **Alert Settings**.
 
 ![hello_screenshot](_img/screenshot_hello_plugin_finished.png)

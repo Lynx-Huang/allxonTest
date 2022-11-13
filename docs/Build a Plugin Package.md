@@ -1,11 +1,11 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Plugin Package is a uniform format to archive your Plugin, and you can distribute your Plugin on Plugin Center by Plugin Package. 
+A **plugin package** is a uniform format in which your plugin is archived. You can distribute your plugin on the Plugin Center by plugin package.
 
-## Deployment
+## Deploy the Plugin Package
 
-Following step will teach you how to pack your Plugin Package from source.
+Follow the instructions below to pack your plugin package from the source.
 
 ### Deploy from Local
 
@@ -16,7 +16,7 @@ Following step will teach you how to pack your Plugin Package from source.
 cmake --build build --target package
 ```
 
-Then you should get Plugin Package `plugIN-hello-0.0.0-linux-x86_64.tar.gz`  under `build` directory.
+Then you get a plugin package `plugIN-hello-0.0.0-linux-x86_64.tar.gz`  under `build` directory.
 
 </TabItem>
 
@@ -26,14 +26,14 @@ Then you should get Plugin Package `plugIN-hello-0.0.0-linux-x86_64.tar.gz`  und
 cmake --build build --config <release|debug> --target package
 ```
 
-Then you should get Plugin Package `plugIN-hello-0.0.0-windows-x86_64.zip`  under `build` directory.
+Then you get a plugin package `plugIN-hello-0.0.0-windows-x86_64.zip`  under `build` directory.
 
 </TabItem>
 </Tabs>
 
 ### Deploy from Docker
 
-Choose `Dockerfile.x86_64` or `Dockerfile.jetson` depend on your target plarform, and output Plugin Package will output under `OUTPUT_DIRECTORY`.
+Choose `Dockerfile.x86_64` or `Dockerfile.jetson` depending on your target plarform. Then the output plugin package appears under `OUTPUT_DIRECTORY`.
 
 ```bash
 docker build -f <Dockerfile.x86_64|Dockerfile.jetson> --output [OUTPUT_DIRECTROY] .
@@ -44,12 +44,11 @@ For example:
 ```bash
 docker build -f Dockerfile.x86_64 --output build .
 ```
+You subsequently get the plugin package `plugIN-hello-0.0.0-linux-x86_64.tar.gz` under `OUTPUT_DIRECTORY` directory.
 
-Then you should get Plugin Package `plugIN-hello-0.0.0-linux-x86_64.tar.gz`  under `OUTPUT_DIRECTORY` directory.
+## Work with the Plugin Package​
 
-## How it works 
-
-Let's take a look at Plugin Package inside to understand how it composed.
+Here is how a plugin package is composed:
 
 ```plain title="plugin-hello-0.0.0-linux-x86_64.tar.gz"
 .
@@ -65,9 +64,11 @@ Let's take a look at Plugin Package inside to understand how it composed.
 1 directory, 7 files
 ```
 
-What Plugin Installer Script install a Plugin just extract the Plugin Package and run the `install_plugIN.sh`, On the other side, run `uninstall_plugIN.sh` when uninstall.
+The **Plugin Installer Script** installs a plugin. All you need to do is extract the plugin package and run the `install_plugIN.sh`. To uninstall, simply run `uninstall_plugIN.sh`.
 
-Next, Let's find out how to implement `install_plugIN.sh` and `uninstall_plugIN.sh`. Check out the hello Plugin working directory.
+Next, you need to implement `install_plugIN.sh` and `uninstall_plugIN.sh`. Check out the **Hello Plugin** working directory.
+
+
 
 ```plain title="plugin-hello"
 ...
@@ -91,12 +92,14 @@ Next, Let's find out how to implement `install_plugIN.sh` and `uninstall_plugIN.
     ├── ...
 ```
 
-This project separate installed files by platform, all files under `resource_dir_[PLATFORM]` will be installed under target device.
+This project separates the installed files by platform. All files under `resource_dir_[PLATFORM]` are installed under the target device.
 
-You have to implement `install_plugIN.sh`, `uninstall_plugIN.sh` yourself. We will set installation path to environment variable `ALLXON_PLUGIN_DIR` when the script be called. So that you can install all you need under `ALLXON_PLUGIN_DIR`, same as windows.
+Please note that you have to implement `install_plugIN.sh` and `uninstall_plugIN.sh` by yourself. When the script is called,  an installation path to the environment variable `ALLXON_PLUGIN_DIR` is set. You can install all you need under `ALLXON_PLUGIN_DIR`, the same as in Windows.
+
 
 :::caution
-If you want, you don't necessary to follow installation path `ALLXON_PLUGIN_DIR`. At least, you must place `uninstall_plugIN.sh` under `ALLXON_PLUGIN_DIR`.
+Optionally, you can choose not to follow the installation path `ALLXON_PLUGIN_DIR`. However, you need to at least place `uninstall_plugIN.sh` under `ALLXON_PLUGIN_DIR`.
+
 :::
 
 <Tabs>
@@ -250,12 +253,13 @@ schtasks /run /tn %APP_NAME%-service%
 </TabItem>
 </Tabs>
 
-## Versioning
+## Version the Plugin Package​
 
-You can update Verison number under `CMakeLists.txt`, following [Semantic Versioning](https://semver.org/) format. Remember to rebuild it after update version.
+You can update *Version number* under `CMakeLists.txt`. Make sure you follow the [Semantic Versioning](https://semver.org/) format, and remember to rebuild the plugin packageit after the version update.
+
 
 :::caution
-If you update `v2/notifyPluginUpdate` content, you must release a new Plugin version. It will affect Allxon Portal Plugin Verification.
+If you update the content of `v2/notifyPluginUpdate`, you must release a new plugin version. It affects the plugin verification on Allxon Portal.
 :::
 
 ```cmake {2} title="CMakeLists.txt" showLineNumbers
@@ -273,7 +277,7 @@ Or your can use `release.sh` to update version.
 
 ## Test your Plugin Package
 
-Before you upload your Plugin Package to Allxon Plugin Center, You should test your package on local. You install your Plugin Package on local through Plugin Online installer.
+Before you upload your plugin package to Allxon Plugin Center, you can test the package on your device. To do so, follow the instructions below to install your plugin package on your device through **Plugin Online installer**.
 
 ### Install Plugin Package
 
@@ -294,7 +298,7 @@ powershell -command "Invoke-WebRequest -OutFile %temp%\plugin-installer.bat http
 </TabItem>
 </Tabs>
 
-After that, you can check if your installation is ok.
+Once done, go to Allxon Portal and check whether your installation is successful.
 
 ### Uninstall Plugin Package
 

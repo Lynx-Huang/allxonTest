@@ -74,11 +74,11 @@
   --ifm-color-info-contrast-background: rgb(7, 55, 99) !important;
   --ifm-color-warning-contrast-background: rgb(120, 63, 4) !important;
 }
-h1, h2, h3, p,b,a {
+h1, h2, h3, p,b,a,li,code,span {
   font-family: 'Poppins', sans-serif;
 }
 h1, h2, h3 {
-  font-weight: bold;
+  font-weight: normal;
 }
 h1 {
   font-size: 32px;
@@ -102,14 +102,15 @@ p img {
   display: block; 
   margin: 0 auto;
 }
+.navbar ,.menu {padding-left: 0 !important;}
 .navbar__logo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.navbar__logo img {
+/* .navbar__logo img {
   height: 25px;
-}
+} */
 .navbar__brand {
   margin-right: 45px;
 }

@@ -9,7 +9,7 @@ const config = {
   title: 'Allxon Octo Developers',
   tagline: 'Allxon are cool',
   url: 'https://lynx-huang.github.io/',
-  baseUrl: '/allxonTest/',
+  baseUrl: '/developer-zone/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -55,7 +55,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'v1.2.0',
+              label: 'v2.x.x',
             },
             '1.1.0': {
               label: 'v1.1.0',
@@ -87,11 +87,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Developers',
+        title: '',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/Allxon_Logo_Gradient-01.png',
-          srcDark: 'img/Allxon_Logo_Gradient-01.png',
+          src: 'img/Allxon-Developer-light.png',
+          srcDark: 'img/Allxon-Developer-dark.png',
           href: 'https://allxon.github.io/developer-zone'
         },
         items: [
@@ -140,20 +140,20 @@ const config = {
               {html: `
               <div class="footer_div">
                   <div class="logo_icons">
-                    <a href="https://www.allxon.com/">
+                    <a target="_blank" href="https://www.allxon.com/">
                         <img class="footer_logo" src="img/Allxon_Logo_White-01.png" alt="">
                     </a>
                     <div class="icon_links">
-                        <a href="https://github.com/allxon"><img src="img/github.png" alt=""></a>
-                        <a href="https://www.linkedin.com/company/allxoninc/"><img src="img/linkedin.png" alt=""></a>
-                        <a href="https://www.facebook.com/AllxonInc/"><img src="img/facebook.png" alt=""></a>
-                        <a href="https://www.youtube.com/channel/UCVyiQzhTiMOZg-XHlL5kFeA"><img src="img/youtube.png" alt=""></a>
+                        <a target="_blank" href="https://github.com/allxon"><img src="img/github.png" alt=""></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/allxoninc/"><img src="img/linkedin.png" alt=""></a>
+                        <a target="_blank" href="https://www.facebook.com/AllxonInc/"><img src="img/facebook.png" alt=""></a>
+                        <a target="_blank" href="https://www.youtube.com/channel/UCVyiQzhTiMOZg-XHlL5kFeA"><img src="img/youtube.png" alt=""></a>
                     </div>
                   </div>
                   <div class="link_links">
-                    <a href="https://www.allxon.com/contact-allxon-octo">Contact Us</a>
-                    <a href="https://www.allxon.com/privacy-policy?hsLang=en">Privacy Policy</a>
-                    <a href="https://www.allxon.com/terms-of-service">Terms</a>
+                    <a target="_blank" href="https://www.allxon.com/contact-allxon-octo">Contact Us</a>
+                    <a target="_blank" href="https://www.allxon.com/privacy-policy?hsLang=en">Privacy Policy</a>
+                    <a target="_blank" href="https://www.allxon.com/terms-of-service">Terms</a>
                   </div>
                   <p class="copyright">© 2022 Allxon. All rights reserved.</p>
               </div>

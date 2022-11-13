@@ -2,17 +2,21 @@
 
 Allxon Octo API adopts [JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification over WebSocket. To communicate with Allxon Agent, you need to create a WebSocket connection **wss://localhost:55688** from the plugin. Then send/receive requests in the JSON format via the API.
 
-:::NOTE
-Each API maximum payload size is 128 KB.
+:::note
+
+Each API maximum payload size is _128 KB_.
+
 :::
 
-:::NOTE
+:::note
+
 Not support _JSON-RPC batch_.
+
 :::
 
 ## About `v2/notifyPluginUpdate` API
 
-`"method"` indicates the API's type and  `"params"` -> `"sdk"`  indicates the  Allxon Octo SDK version. Each JSON object under `"params"` -> `"modules"` corresponds to different cards on Allxon Portal.
+`"method"` indicates the API's type and  `"params"` → `"sdk"`  indicates the  Allxon Octo SDK version. Each JSON object under `"params"` → `"modules"` corresponds to a different card on Allxon Portal.
 
 Here is an example of JSON:
 
@@ -86,12 +90,11 @@ Here is an example of JSON:
 }
 ```
 
-For example, the highlight part of above JSON repesent Property Card on Allxon Portal:
-
+The above highlighted section corresponds to the Properties card on Allxon Portal:
 ![property](../_img/screenshot_property.png)
 
 :::tip
-You can use the built-in macro syntax  `${}` to obtain project level information. The current available syntax is as follows: `PLUGIN_NAME`, `PLUGIN_APP_GUID`, `PLUGIN_VERSION`, `OCTO_SDK_VERSION`.
+You can use the built-in macro syntax  `${}` to obtain project level information. The current available syntax is as follows: `PLUGIN_NAME`, `PLUGIN_APP_GUID`, `PLUGIN_VERSION` and `OCTO_SDK_VERSION`.
 :::
 
 
@@ -117,54 +120,56 @@ Here is a brief introduction to the API functionalities:
 
 | Direction | Description |
 | --- | --- |
-| Plugin → Allxon Agent | After receiving `v2/notifyPluginCommand`, the plugin sends acknowledgement of the command back to Allxon portal. | 
+| Plugin → Allxon Agent | After receiving `v2/notifyPluginCommand`, the plugin sends acknowledgement of the command back to Allxon Portal. | 
     
 ### `v2/notifyPluginState`
 
 | Direction | Description |
 | --- | --- |
-| Plugin → Allxon Agent | The plugin updates the data on the Allxon Portal States card. This functionality is typically designed for real-time update on the current device states, e.g. network condition and power status. Allxon Portal only shows the latest data it receives and doesn’t reserve such data. | 
+| Plugin → Allxon Agent | The plugin updates the data the **States** card on the Allxon Portal States card. This functionality is typically designed for updating the current device states, e.g. network condition and power status. Allxon Portal only shows the latest data it receives and doesn’t reserve such data. | 
     
 ### `v2/notifyPluginEvent`
 
 | Direction | Description |
 | --- | --- |
-| Plugin → Allxon Agent | The plugin updates the data on the Allxon Portal Events cCard. This functionality is typically designed for non- real-time update on device events, e.g. IO trigger event and user login event. Such data is reserved on Allxon Cloud for 90 days. | 
+| Plugin → Allxon Agent | The plugin updates the data on the **Event** card on Allxon Portal. The event types and triggers are predefined by the plugin. This functionality is typically used for device event updates, e.g. IO trigger event and user login event. Such data is reserved on Allxon Cloud for 90 days. | 
     
 ### `v2/notifyPluginMetric`
 
 | Direction | Description |
 | --- | --- |
-| Plugin → Allxon Agent | The plugin updates data on the Allxon Portal Charts card. This functionality is typically designed for time-series data presented in a trend chart, e.g. device temperature. Such data is reserved on Allxon Cloud for 90 days.| 
+| Plugin → Allxon Agent | The plugin updates data on the **Charts** card on the Portal. This functionality is typically designed for time-series data presented in a trend chart, e.g. device temperature. Such data is reserved on Allxon Cloud for 90 days.| 
     
 ### `v2/notifyPluginAlert`
 
 | Direction | Description |
 | --- | --- |
-| Plugin → Allxon Agent | The plugin triggers Alerts to the Allxon Portal. This functionality is typically designed for emergency data. Depending on your Allxon Portal settings, you can be notified by email, webhook, etc.  | 
+| Plugin → Allxon Agent | **Alerts** are predefined by the plugin. This functionality is typically designed for triggering Alerts configured on Allxon Portal and for pushing notifications to users by email, Webhook, LINE, etc.| 
 
 ### `v2/notifyPluginAlarmUpdate`
 
 | Direction | Description |
 | --- | --- |
-| Allxon Agent → Plugin | Plugin will be notified once the Plugin is online if there are alert settings on Allxon Portal. When you setup your alert setting on Allxon Portal, Plugin will get `v2/notifyPluginAlarmUpdate` to synchronize alert related setting. | 
+| Allxon Agent → Plugin | When Alerts are set up on Allxon Portal, the plugin receives `v2/notifyPluginAlarmUpdate` to synchronize with the alert related settings. | 
 
 ### `v2/notifyPluginConfigUpdate`
 
 | Direction | Description |
 | --- | --- |
-| Allxon Agent → Plugin | If Configs is set up on Allxon Portal, the plugin gets notified once it comes online. This functionality is typically designed for configuring your device through Allxon Portal. |
+| Allxon Agent → Plugin | If Configs is set up on Allxon Portal, the plugin gets notified once it comes online.  This functionality is typically designed for setting rules to automate device operations. |
 
 :::tip
-For more details, please refer to the [API documentation](https://wayneliu0512.github.io/octo-developer-zone_docusaurus/API%20Reference)
+For more details, please refer to the API Reference.
 :::
 
 
-## Typical API Sequence Flow
+## API Sequence Flow
 
-Here is a typical API sequence flow:
+Here is an example of the API sequence flow:
+
 ![sequence-diagram](_img/sequence-diagram.png)
+
 1. Connect to Allxon Agent by Websocket.
-2. Send 'v2/notifyPluginUpdate' to initialize Allxon Portal cards.
-3. If you have set up Alert Setting on Allxon Portal, you will receive 'v2/notifyPluginAlarmUpdate'.
-4. If you have set up Configs on Allxon Portal, you will receive 'v2/notifyPluginConfigUpdate'.
+2. Send `v2/notifyPluginUpdate` to initialize cards on Allxon Portal.
+3. Once the **Alert Settings** are updated, the plugin receives `v2/notifyPluginAlarmUpdate` to apply the settings.
+4. Once **Configs** are set up on Allxon Portal, the plugin receives `v2/notifyPluginConfigUpdate` to apply the settings.

@@ -1,6 +1,10 @@
+
 ![properties-update](../_img/properties-plugin-update.png)
 
-Properties Card is Designed for showing static related information, such as firmware version, hardware configuration, ..., etc. Here is a `v2/notifyPluginUpdate` example JSON, we can focus on highlight part to learn how to setup your Properties Card.
+The **Properties** card is designed for showing static information, such as firmware version, hardware configuration, etc. 
+
+Here is an example of `v2/notifyPluginUpdate` JSON. Let’s focus on the highlighted section to learn how to create your **Properties** card.
+
 
 ```json {16-61} 
 {
@@ -47,7 +51,7 @@ Properties Card is Designed for showing static related information, such as firm
                     {
                         "name": "os",
                         "displayName": "OS",
-                        "displayCategory": "Sofware",
+                        "displayCategory": "Software",
                         "description": "Print the OS Name",
                         "displayType": "string",
                         "value": "Linux"
@@ -55,7 +59,7 @@ Properties Card is Designed for showing static related information, such as firm
                     {
                         "name": "os-detail",
                         "displayName": "About OS",
-                        "displayCategory": "Sofware",
+                        "displayCategory": "Software",
                         "description": "More detail about OS",
                         "displayType": "link",
                         "value": {
@@ -72,18 +76,26 @@ Properties Card is Designed for showing static related information, such as firm
 
 Here is how it looks like on Allxon Portal:
 
+<!-- ![properties-plugin](../_img/properties-plugin.png) -->
+
+The **plugIN** card displays the basic information about this plugin.
+
 ![properties-hardware](../_img/properties-hardware.png)
 
-When you click on "Others" table icon ![properties-table-icon](../_img/properties-table-icon.png), table dialog will popup. This is what it like when you set `"displayType"` to `"table"`.
+There are two tabs under the **Properties** card: **Hardware** and **Software**.  
+Since both _CPU Architecture_ and _Others_ have `"displayCategory"` set to `"Hardware"`, you can view them under the **Hardware** tab. 
+
+There are different kinds of `"displayType"`. In this example, the `"displayType"` is `"table"` and a table icon ![properties-table-icon](../_img/properties-table-icon.png) is displayed. If you click on the icon, a window pops up for you to view more details, as shown below.
 
 ![properties-table](../_img/properties-table.png)
 
-When you click on "Software", will jump into "Software" Category. It will content properties that set `"displayCategory"` to `"Software"`.
+You can also click on **Software** tab to switch to the *Software* category. 
+Under this category, all properties that have `"displayCategory"` set to `"Software"` are displayed. See below screenshot:
 
 ![properties-software](../_img/properties-software.png)
 
-"linux.org" is a clickable external link, because `"displayType"` is `"link"`.
+The *linux.org* is a clickable external link since the `"displayType"` of *About OS* is set to `"link"`.
 
 :::caution
-`"value"` format is depend on which `"displayType"`, make sure you have a correct `"value"` format. 
+The `"value"` format depends on the `"displayType"`. Make sure you have a correct `"value"` format. 
 :::
