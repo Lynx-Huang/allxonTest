@@ -27,16 +27,16 @@ Here is an example of `plugin_credential.json`:
 The `app_guid` repesent your Plugin's ID. The  `access_key` is your key to sign your data.
 
 :::caution
-Please keep your `access_key` safe,  Don't reveal it to anyone.
+Please keep your `access_key` safe.  Don't reveal it to anyone.
 :::
 
 ## Get the Plugin Online
 
-First, you need to get your plugin online by connecting to Allxon Agent WebSocket server. 
+First, you need to get your plugin online by connecting to WebSocket server. 
 
 Below is the source code. 
 
-`"wss://127.0.0.1:55688"`.
+`"wss://127.0.0.1:55688"`
 
 ```cpp {19} title="src/main.cpp"
 // ...
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 
 :::info
 
-Allxon Octo SDK only provides JSON encryption and decryption functionalities. Since it is not limited to specific WebSocket libraries, use whichever Websocket library that suits your needs.
+Allxon Octo SDK only provides JSON encryption and decryption functionalities. Since it is not limited to specific WebSocket libraries, use whichever WebSocket library that suits your needs.
 :::
 
 Next, Send a `v2/notifyPluginUpdate` initialize all the cards on Allxon Portal.
@@ -145,7 +145,7 @@ build\<Debug|Release>\plugin-hello.exe resource_dir_windows
 <Tabs>
 <TabItem value="bash" label="Linux">
 
-You can run **plugin-hello** directly under the `build/folder`, and pass `resource_dir_linux` through argument
+You can run **plugin-hello** directly under the `build/folder`, and pass `resource_dir_linux` through argument.
 
 ```bash
 build/plugin-hello resource_dir_linux
@@ -165,3 +165,88 @@ build\<Debug|Release>\plugin-hello.exe resource_dir_windows
 Then, you can find your Plugin page on Allxon Portal, displaying cards of **Commands**, **States**, **Properties**, and **Alert Settings**.
 
 ![hello_screenshot](_img/screenshot_hello_plugin_finished.png)
+
+
+## About `v2/notifyPluginUpdate` API
+
+`"method"` indicates the API's type and  `"params"` → `"sdk"`  indicates the  Allxon Octo SDK version. Each JSON object under `"params"` → `"modules"` corresponds to a different card on Allxon Portal.
+
+Here is an example of JSON:
+
+```json {16-24} title="resource_dir_linux/plugin_update_template.json" showLineNumbers
+{
+  "jsonrpc": "2.0",
+  "method": "v2/notifyPluginUpdate",
+  "params": {
+    "sdk": "${OCTO_SDK_VERSION}",
+    "appGUID": "${PLUGIN_APP_GUID}",
+    "appName": "${PLUGIN_NAME}",
+    "epoch": "",
+    "displayName": "plugIN Hello",
+    "type": "ib",
+    "version": "${PLUGIN_VERSION}",
+    "modules": [
+      {
+        "moduleName": "${PLUGIN_NAME}",
+        "displayName": "plugIN Hello",
+        "properties": [
+          {
+            "name": "current_dir",
+            "displayName": "Current Working Directory",
+            "description": "Print the current working directory",
+            "displayType": "string",
+            "value": ""
+          }
+        ],
+        "states": [
+          {
+            "name": "receive_hello",
+            "displayName": "Last Received Message",
+            "description": "Last received message from a stranger",
+            "displayType": "string"
+          }
+        ],
+        "commands": [
+          {
+            "name": "say_hello",
+            "type": "asynchronous",
+            "displayCategory": "Action",
+            "displayName": "Say Hello",
+            "description": "Say hello to a person",
+            "params": [
+              {
+                "name": "person",
+                "displayName": "Person Name",
+                "description": "Person who you wanna to say hello",
+                "displayType": "string",
+                "required": true,
+                "defaultValue": "Buzz"
+              }
+            ]
+          }
+        ],
+        "metrics": [],
+        "events": [],
+        "alarms": [
+          {
+            "name": "hello_alarm",
+            "displayCategory": "Message",
+            "displayName": "Hello alarm",
+            "description": "Trigger when someone say hello",
+            "params": []
+          }
+        ],
+        "configs": []
+      }
+    ]
+  }
+}
+```
+
+The above highlighted section corresponds to the Properties card on Allxon Portal:
+
+![property](_img/screenshot_property.png)
+
+:::tip
+You can use the built-in macro syntax  `${}` to obtain project level information. The current available syntax is as follows: `PLUGIN_NAME`, `PLUGIN_APP_GUID`, `PLUGIN_VERSION` and `OCTO_SDK_VERSION`.
+:::

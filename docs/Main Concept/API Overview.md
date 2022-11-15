@@ -12,92 +12,6 @@ Each API maximum payload size is _128 KB_.
 
 Not support _JSON-RPC batch_.
 
-:::
-
-## About `v2/notifyPluginUpdate` API
-
-`"method"` indicates the API's type and  `"params"` → `"sdk"`  indicates the  Allxon Octo SDK version. Each JSON object under `"params"` → `"modules"` corresponds to a different card on Allxon Portal.
-
-Here is an example of JSON:
-
-```json {16-24} title="resource_dir_linux/plugin_update_template.json" showLineNumbers
-{
-  "jsonrpc": "2.0",
-  "method": "v2/notifyPluginUpdate",
-  "params": {
-    "sdk": "${OCTO_SDK_VERSION}",
-    "appGUID": "${PLUGIN_APP_GUID}",
-    "appName": "${PLUGIN_NAME}",
-    "epoch": "",
-    "displayName": "plugIN Hello",
-    "type": "ib",
-    "version": "${PLUGIN_VERSION}",
-    "modules": [
-      {
-        "moduleName": "${PLUGIN_NAME}",
-        "displayName": "plugIN Hello",
-        "properties": [
-          {
-            "name": "current_dir",
-            "displayName": "Current Working Directory",
-            "description": "Print the current working directory",
-            "displayType": "string",
-            "value": ""
-          }
-        ],
-        "states": [
-          {
-            "name": "receive_hello",
-            "displayName": "Last Received Message",
-            "description": "Last received message from a stranger",
-            "displayType": "string"
-          }
-        ],
-        "commands": [
-          {
-            "name": "say_hello",
-            "type": "asynchronous",
-            "displayCategory": "Action",
-            "displayName": "Say Hello",
-            "description": "Say hello to a person",
-            "params": [
-              {
-                "name": "person",
-                "displayName": "Person Name",
-                "description": "Person who you wanna to say hello",
-                "displayType": "string",
-                "required": true,
-                "defaultValue": "Buzz"
-              }
-            ]
-          }
-        ],
-        "metrics": [],
-        "events": [],
-        "alarms": [
-          {
-            "name": "hello_alarm",
-            "displayCategory": "Message",
-            "displayName": "Hello alarm",
-            "description": "Trigger when someone say hello",
-            "params": []
-          }
-        ],
-        "configs": []
-      }
-    ]
-  }
-}
-```
-
-The above highlighted section corresponds to the Properties card on Allxon Portal:
-![property](../_img/screenshot_property.png)
-
-:::tip
-You can use the built-in macro syntax  `${}` to obtain project level information. The current available syntax is as follows: `PLUGIN_NAME`, `PLUGIN_APP_GUID`, `PLUGIN_VERSION` and `OCTO_SDK_VERSION`.
-:::
-
-
 ## Allxon Octo JSON RPC API
 
 After getting online to Allxon Portal, your edge device is ready to be managed on the cloud. 
@@ -156,7 +70,7 @@ Here is a brief introduction to the API functionalities:
 
 | Direction | Description |
 | --- | --- |
-| Allxon Agent → Plugin | If Configs is set up on Allxon Portal, the plugin gets notified once it comes online.  This functionality is typically designed for setting rules to automate device operations. |
+| Allxon Agent → Plugin | If Configs are set up on Allxon Portal, the plugin gets notified once it comes online.  This functionality is typically designed for setting rules to automate device operations. |
 
 :::tip
 For more details, please refer to the API Reference.

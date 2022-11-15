@@ -1,4 +1,4 @@
-**Allxon Octo SDK** is implemented in *C++* and is available for 3<sup>rd</sup> party developers to build plugins to connect devices to Allxon Portal. By using Allxon Octo SDK, you can build your own application to enhance the management and usability of your devices on Allxon Portal. We call the application "**plugin**".
+Allxon Octo SDK is implemented in **C++** and is available for 3<sup>rd</sup> party developers to build plugins to connect devices to Allxon Portal. By using Allxon Octo SDK, you can build your own application to enhance the management and usability of your devices on Allxon Portal. We call the application "**plugin**".
 
 Let’s explore [Hello Plugin](https://github.com/allxon/plugIN-hello/releases) built by Allxon Octo SDK and learn what a plugin looks like.
 
@@ -9,8 +9,8 @@ Your device must come online on [Allxon Portal](https://dms.allxon.com/next/sign
 :::info
 
 Following the steps below to get your device online on Allxon Portal:
-1. Install [Allxon Agent](https://www.allxon.com/knowledge/install-allxon-agent-via-command-prompt) on your device.
-2. Get a pairing code on your device. Then add your device on [Allxon Portal](https://dms.allxon.com/next/signin).
+1. Install [**Allxon Agent**](https://www.allxon.com/knowledge/install-allxon-agent-via-command-prompt) on your device.
+2. Get a pairing code on your device. Then add your device on [**Allxon Portal**](https://dms.allxon.com/next/signin).
 
 :::
 

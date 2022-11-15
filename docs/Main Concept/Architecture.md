@@ -4,10 +4,26 @@
 
 This picture below is an overview of the Allxon Octo architecture. The plugin communicates with Allxon Agent through [JSON-RPC](https://www.jsonrpc.org/specification) WebSocket, and the Allxon Agent connects to MQTT server hosted by Allxon Cloud. With such a design, Allxon Octo API seamlessly transmits JSON between the Cloud and the plugin.
 
-![allxon_infrasturcture](_img/allxon_infrastructure.png)
+![allxon_infrasturcture](../_img/allxon_infrastructure.png)
 
 
 Not quite clear? Refer to the descriptions below to learn more about each element.
+
+
+
+
+| Element      | Description      |
+| ---------- | ---------- |
+| Allxon Cloud | The backend server(s) of Allxon service; both Allxon Portal and Allxon Agent are connected to Allxon Cloud.|
+| Allxon Portal   |  The frontend server(s) of Allxon service.   |
+| Allxon Agent   | An agent application that communicates between edge devices and Allxon Cloud.   |
+| Plugin   | A software application that extends the functionalities of Allxon service. A plugin sends collected data from modules to Allxon Cloud via Allxon Agent. It also sends commands from Allxon Portal to modules via Allxon Agent.   |
+| Module   | A hardware component (e.g. GPU, SSD, fan) or a software application (e.g. remote console utilities). A plugin collects data from a module or sends commands to a module.   |
+| MQTT Broker   | Allxon Agent connects to a MQTT broker hosted by Allxon Cloud. All the data exchange between Allxon Agents and Allxon Cloud go through this channel.   |
+| WebSocket Server  | A plugin connects to a WebSocket server hosted within an Allxon Agent. The plugin sends and receives data to/from Allxon Cloud with Allxon Octo APIs through this channel. |
+| Allxon Octo API  | The Application Programming Interface used to communicate between Allxon Agent and plugins.  |
+| Allxon Octo SDK  |The Software Development Kit provided by Allxon, which helps developers to build plugins and verify Allxon Octo APIs.  |
+
 
 **Allxon Cloud**: The backend server(s) of Allxon service; both Allxon Portal and Allxon Agent are connected to Allxon Cloud.
 

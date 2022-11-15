@@ -2,7 +2,7 @@
 
 There are seven types of features available in Allxon Octo SDK — **Properties**, **States**, **Metrics**, **Events**, **Commands**, **Alerts** and **Configs**. Once a plugin is registered with the Agent, a new tab appears on the Portal. As shown in the screenshot below, each applicable feature has a corresponding “card” to display details.
 
-![screen_telgrastates](../_img/screen_tegrastates.png)
+![screen_telgrastates](../_img/screen_telgrastates.png)
 
 ## Properties
 The **Properties **card displays the device information that is not frequently changed. By default, the information on this card is only updated when a plugin is registered for the first time.
@@ -80,7 +80,7 @@ The **Metrics** feature brings time-series data to the **Charts** card on the Po
 ## Alerts
 The **Alerts** feature allows users to set thresholds for plugin-predefined alerts and then apply the settings to edge devices. If the threshold on an edge device is reached, the device plugin triggers alerts to Allxon Cloud to send notifications to the users.
 
-![screen_alert_settings](../_img/screen_alert_settings.png) 
+![screen_alert_settings](../_img/screen_alert_settings.png)
 
 :::tip Example alerts
 

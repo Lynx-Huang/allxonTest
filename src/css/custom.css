@@ -74,8 +74,11 @@
   --ifm-color-info-contrast-background: rgb(7, 55, 99) !important;
   --ifm-color-warning-contrast-background: rgb(120, 63, 4) !important;
 }
-h1, h2, h3, p,b,a,li,code,span {
-  font-family: 'Poppins', sans-serif;
+h1, h2, h3, p,b,a,li,code,span,div,td {
+  font-family: 'Poppins', sans-serif !important;
+}
+div {
+  font-weight: normal !important;
 }
 h1, h2, h3 {
   font-weight: normal;
@@ -102,7 +105,7 @@ p img {
   display: block; 
   margin: 0 auto;
 }
-.navbar ,.menu {padding-left: 0 !important;}
+.navbar ,.menu {padding-left: 25px !important;}
 .navbar__logo {
   display: flex;
   align-items: center;
@@ -112,7 +115,7 @@ p img {
   height: 25px;
 } */
 .navbar__brand {
-  margin-right: 45px;
+  margin-right: 80px;
 }
 .navbar__title.text--truncate {
   font-size: 20px;
@@ -130,10 +133,13 @@ html[data-theme=dark] .header-github-link:before {
   width: 24px;
 }
 .theme-doc-sidebar-item-link.theme-doc-sidebar-item-link-level-1.menu__list-item {
-  font-weight: bold;
+  font-weight: normal;
 }
 .menu__link--sublist.menu__link--sublist-caret {
-  font-weight: bold;
+  font-weight: normal;
+}
+.menu__link {
+  font-weight: lighter;
 }
 td img {
   width: 16px;
@@ -152,7 +158,7 @@ td img {
   align-items: center;
 }*/
 .footer {
-  padding: 30px 16px;
+  padding: 30px 40px;
 }
 .footer__col {
   padding-left: 0;
@@ -219,6 +225,8 @@ td img {
   content: '|';
   display: block;
   margin-left: 10px;
+  text-decoration: none;
+  pointer-events: none;
 }
 .link_links a:last-of-type::after {
   display: none;

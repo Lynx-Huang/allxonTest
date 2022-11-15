@@ -78,6 +78,6 @@ Below is an example of the **Charts** card::
 
 ![metric-first-shot](../_img/metrics-first-shot.png)
 
-You can continue to send the `v2/notifyPluginMetric`. The chart is updated accordingly
+You can continue to send the `v2/notifyPluginMetric`. The chart is updated accordingly.
 
 ![metric-second-shot](../_img/metrics-second-shot.png)

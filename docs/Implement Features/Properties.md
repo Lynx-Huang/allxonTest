@@ -76,21 +76,24 @@ Here is an example of `v2/notifyPluginUpdate` JSON. Let’s focus on the highlig
 
 Here is how it looks like on Allxon Portal:
 
-<!-- ![properties-plugin](../_img/properties-plugin.png) -->
+![properties-plugin](../_img/properties-screen.png)
 
 The **plugIN** card displays the basic information about this plugin.
 
-![properties-hardware](../_img/properties-hardware.png)
+<!-- ![properties-plugin](../_img/properties-plugin.png) -->
+
 
 There are two tabs under the **Properties** card: **Hardware** and **Software**.  
 Since both _CPU Architecture_ and _Others_ have `"displayCategory"` set to `"Hardware"`, you can view them under the **Hardware** tab. 
+
+![properties-hardware](../_img/properties-hardware.png)
+
 
 There are different kinds of `"displayType"`. In this example, the `"displayType"` is `"table"` and a table icon ![properties-table-icon](../_img/properties-table-icon.png) is displayed. If you click on the icon, a window pops up for you to view more details, as shown below.
 
 ![properties-table](../_img/properties-table.png)
 
-You can also click on **Software** tab to switch to the *Software* category. 
-Under this category, all properties that have `"displayCategory"` set to `"Software"` are displayed. See below screenshot:
+You can also click on **Software** tab to switch to the *Software* category. Under this category, all properties that have `"displayCategory"` set to `"Software"` are displayed. See below screenshot:
 
 ![properties-software](../_img/properties-software.png)
 
